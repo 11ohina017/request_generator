@@ -20,19 +20,20 @@
                         </label>
                         <div class="col-sm-8">
                             {{ field }}
+                            {{ field.help_text }}
                             {{ field.errors }}
                         </div>
                     </div>
                 {% endfor %}
 
-                <div class="offset-sm-4 col-sm-8">
+                <div class="offset-sm-4 col-sm-64">
                     <button class="btn btn-primary" type="submit" name="generate">電文生成</button>
                 </div>
 
                 <br>
 
                 <div class="offset-sm-4 col-sm-8">
-                    <output type="text" class="form-control" aria-label="result">{{ result }}</output>
+                    <output type="text" class="form-control" style="width:500px" aria-label="result">{{ result }}</output>
                 </div>
 
             </form>

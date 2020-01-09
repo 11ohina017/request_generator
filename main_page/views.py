@@ -15,6 +15,7 @@ class RequestView(FormView):
     def form_valid(self, form):
 
         request_result = ""
+        print(type(form))
 
         for key, value in form.cleaned_data.items():
             request_result = request_result + value
@@ -22,6 +23,7 @@ class RequestView(FormView):
                 'result': request_result,
                 'form': form
             }
+
         if 'generate' in self.request.POST:
             return render(self.request, 'request.html', context)
 
