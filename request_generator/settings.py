@@ -25,7 +25,8 @@ SECRET_KEY = '4w0#&@cr%vl*vm@0ztei+ul2kswmx!3t4tzfems_@8@5&!%tz+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tech.ohina.work', 'localhost']
+#ALLOWED_HOSTS = ['*']
 
 
 # Application definition
