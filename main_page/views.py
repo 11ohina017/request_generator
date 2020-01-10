@@ -35,7 +35,7 @@ class RequestView(FormView):
         request_length_hex = format(request_length, '04x')
         form.fields['request_length'].initial = request_length_hex
 
-        request_result = request_result_first + " " + request_length_hex + request_result_second
+        request_result = request_result_first + request_length_hex + request_result_second
         context = {
             'result': request_result,
             'form': form
