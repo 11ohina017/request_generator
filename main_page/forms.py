@@ -6,7 +6,7 @@ class RequetForm(forms.Form):
     network_number = forms.CharField(label='要求先ネットワーク番号[Hex]', max_length=2)
     pc_number = forms.CharField(label='要求先局番号[Hex]', help_text='※ ネットワークに接続されているユニットの識別番号を指定します', max_length=2)
     io_number = forms.CharField(label='要求先I/O番号[Hex]', max_length=4)
-    request_length = forms.CharField(label='要求データ長[Hex]', help_text='※ これ以降の電文のバイト数(文字数)を指定します', max_length=4)
+    request_length = forms.CharField(label='要求データ長[Hex]', help_text='※ 電文生成を実行するとこれ以降の電文のバイト数(文字数)が入力されます', max_length=4, initial='0000')
     cpu_timer = forms.CharField(label='CPUタイマ[Hex]', help_text='※ 応答待ち時間[0.25秒単位]を指定します', max_length=4)
 
     command_choices = [
@@ -73,7 +73,7 @@ class RequetForm(forms.Form):
     network_number.initial = "00"
     pc_number.initial = "FF"
     io_number.initial = "03FF"
-    request_length.initial = "0018"
+    request_length.initial = "0000"
     cpu_timer.initial = "0010"
     command.initial = "0401"
     sub_command.initial = "0000"
@@ -81,7 +81,7 @@ class RequetForm(forms.Form):
     header_address.initial = "065535"
     device_point_number.initial = "0064"
     """
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -99,6 +99,7 @@ class RequetForm(forms.Form):
 
         self.fields['request_length'].widget.attrs['class'] = 'form-control col-9'
         self.fields['request_length'].widget.attrs['placeholder'] = '0018'
+        self.fields['request_length'].disabled = True
 
         self.fields['cpu_timer'].widget.attrs['class'] = 'form-control col-9'
         self.fields['cpu_timer'].widget.attrs['placeholder'] = '0010'

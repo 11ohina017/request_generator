@@ -14,15 +14,32 @@ class RequestView(FormView):
 
     def form_valid(self, form):
 
-        request_result = ""
-        print(type(form))
+        request_result_first = ""
+        request_result_second = ""
+        request_length_flag = False
 
+        # フォームの値を結合
         for key, value in form.cleaned_data.items():
-            request_result = request_result + value
-            context = {
-                'result': request_result,
-                'form': form
-            }
+
+            if key == "request_length":
+                request_length_flag = True
+            else:
+                if request_length_flag== False:
+                    request_result_first = request_result_first + value
+                else:
+                    request_result_second = request_result_second + value
+
+        # 要求データ長の作成
+        request_length = len(request_result_second)
+        print(request_length)
+        request_length_hex = format(request_length, '04x')
+        form.fields['request_length'].initial = request_length_hex
+
+        request_result = request_result_first + " " + request_length_hex + request_result_second
+        context = {
+            'result': request_result,
+            'form': form
+        }
 
         if 'generate' in self.request.POST:
             return render(self.request, 'request.html', context)
