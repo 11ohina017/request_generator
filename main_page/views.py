@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.shortcuts import render
 from .forms import RequetForm
+from django.http import HttpResponse
 
 class IndexView(TemplateView):
     template_name = "index.html"
@@ -43,4 +44,3 @@ class RequestView(FormView):
 
         if 'generate' in self.request.POST:
             return render(self.request, 'request.html', context)
-

@@ -2,6 +2,8 @@
 
 TODO:
     * formのchoiceをファイル読み込みに変更する
+    * formのデバイス点数を10進数で指定できるようにする
+    * コピーアンドペーストボタンを実行
 """
 
 from django.urls import path

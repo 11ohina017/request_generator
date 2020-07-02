@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Request Generator{% endblock %}
 
 {% block active_inquiry %}active{% endblock %}
@@ -33,11 +33,30 @@
                 <br>
 
                 <div class="offset-sm-4 col-sm-8">
-                    <output type="text" class="form-control" style="width:500px" aria-label="result">{{ result }}</output>
+                    <output  id="result" type="text" class="form-control" style="width:500px" aria-label="result">{{ result }}</output>
+                    <input id="dummyResult" type="hidden">
                 </div>
+                
 
+                <div class="offset-sm-4 col-sm-64">
+                    <button onclick="copyToClipboard()" class="btn btn-primary" type="button">コピー</button>
+                </div>
+                
+                <script>
+                    function copyToClipboard() {
+                        var copyTarget;
+                        var copyText = document.getElementById("result").value;
+                        document.getElementById("dummyResult").value = "test";
+                        
+                        copyTarget = document.getElementById("dummyResult");
+                        copyTarget.select();
+                        document.execCommand("Copy");
+                        alert("Copied the text: " + copyTarget.value);
+                   }
+               </script>
             </form>
         </div>
     </div>
 </div>
+
 {% endblock %}
